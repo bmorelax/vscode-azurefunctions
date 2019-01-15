@@ -12,7 +12,7 @@ import * as path from 'path';
 import * as vscode from 'vscode';
 import * as appservice from 'vscode-azureappservice';
 import { AzureTreeItem, DialogResponses, IActionContext, IAzureUserInput, TelemetryProperties, UserCancelledError } from 'vscode-azureextensionui';
-import { deploySubpathSetting, extensionPrefix, funcPackId, installExtensionsId, preDeployTaskSetting, ProjectLanguage, ProjectRuntime, publishTaskId, ScmType } from '../constants';
+import { deploySubpathSetting, extensionPrefix, extInstallTaskName, funcPackId, preDeployTaskSetting, ProjectLanguage, ProjectRuntime, publishTaskId, ScmType } from '../constants';
 import { ArgumentError } from '../errors';
 import { ext } from '../extensionVariables';
 import { addLocalFuncTelemetry } from '../funcCoreTools/getLocalFuncCoreToolsVersion';
@@ -100,6 +100,9 @@ export async function deploy(this: IActionContext, target?: vscode.Uri | string 
         telemetryProperties.cancelStep = '';
     }
 
+    // todo
+    // const regexp: RegExp = new RegExp(`(${task.source}: )?${task.name}`, 'i');
+    // if (regexp.test(taskName) && task.scope !== undefined) {
     const preDeployResult: appservice.IPreDeployTaskResult = await appservice.runPreDeployTask(this, deployFsPath, siteConfig.scmType, extensionPrefix);
     await handlePreDeployTaskResult(preDeployResult, language, runtime);
 
@@ -306,7 +309,7 @@ function getRecommendedTaskName(language: ProjectLanguage, runtime: ProjectRunti
             return publishTaskId;
         case ProjectLanguage.JavaScript:
             // "func extensions install" is only supported on v2
-            return runtime === ProjectRuntime.v1 ? undefined : installExtensionsId;
+            return runtime === ProjectRuntime.v1 ? undefined : extInstallTaskName;
         case ProjectLanguage.Python:
             return funcPackId;
         default:

@@ -61,5 +61,11 @@
     "azFunc.createSlot": "Create Slot...",
     "azFunc.swapSlot": "Swap Slot...",
     "azFunc.advancedCreationDescription": "Enables advanced creation of function apps, which will prompt for several additional values instead of using a default.",
-    "azFunc.toggleAppSettingVisibility": "Toggle App Setting Visibility."
+    "azFunc.toggleAppSettingVisibility": "Toggle App Setting Visibility.",
+    "azFunc.debug.node.label": "Node.js: Attach to Azure Functions",
+    "azFunc.debug.node.description": "Attach to JavaScript functions running locally.",
+    "azFunc.debug.python.label": "Python: Attach to Azure Functions",
+    "azFunc.debug.python.description": "Attach to Python functions running locally.",
+    "azFunc.debug.java.label": "Java: Attach to Azure Functions",
+    "azFunc.debug.java.description": "Attach to Java functions running locally."
 }
